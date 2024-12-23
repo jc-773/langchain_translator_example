@@ -17,6 +17,9 @@ model = ChatOpenAI(model="gpt-4o-mini")
 text_to_translate = input("Enter the English text you want to translate: ")
 language = input("Enter what language you want this translated to: ")
 
+is_hebrew = False
+
+
 
 system_template = "Translate the following text from English to {language}"
 
@@ -29,8 +32,13 @@ response = model.invoke(prompt)
 translated_text = response.content
 
 #for hebrew and arabic
-#reversed_text = translated_text[::-1]
+if language in ("Hebrew", "Arabic"):
+ reversed_text = translated_text[::-1]
+ print(reversed_text)
+else:
+ print(translated_text)
+  
 
-print(translated_text)
+
 
 
